@@ -2,7 +2,7 @@
 #
 # Inputs:
 #   * app-git: GitHub Repo with an application source
-#   * runtime-git: GitHub Repo with an OpenWhisk Runtime
+#   * javascript-runtime-git: GitHub Repo with an Node.JS OpenWhisk Runtime
 #   * DOCKERFILE
 #   * OW_RUNTIME_DEBUG
 #   * OW_RUNTIME_PLATFORM
@@ -23,11 +23,12 @@ spec:
     resources:
       - name: app-git
         type: git
-      - name: runtime-git
+      - name: javascript-runtime-git
         type: git
     params:
       - name: DOCKERFILE
         description: "The path to the dockerfile to build from Runtime Repo"
+        default: "./javascript-runtime-git/core/nodejs10Action/knative/Dockerfile"
       - name: OW_RUNTIME_DEBUG
         description: "flag to indicate debug mode should be on/off"
         default: "false"
@@ -94,7 +95,7 @@ spec:
       args:
         - -i
         - -e
-        - 's/COPY ./COPY .\/runtime-git/g'
+        - 's/COPY ./COPY .\/javascript-runtime-git/g'
         - $(inputs.params.DOCKERFILE)
     - name: build-openwhisk-app-image
       image: "gcr.io/kaniko-project/executor:latest"

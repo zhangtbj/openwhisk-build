@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: build-java-app-image
+spec:
+  serviceAccountName: openwhisk-app-builder
+  pipelineRef:
+    name: build-openwhisk-app
+  params:
+    - name: OW_APP_PATH
+      value: ""
+    - name: OW_ACTION_NAME
+      value: "openwhisk-java-app"
+  resources:
+    - name: app-git
+      resourceSpec:
+        type: git
+        params:
+          - name: url
+            value: https://github.com/pwplusnick/java-openwhisk-example-app.git
+    - name: app-image
+      resourceSpec:
+        type: image
+        params:
+           - name: url
+             value: docker.io/bluebosh/openwhisk-java-app:latest

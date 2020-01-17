@@ -5,7 +5,7 @@ metadata:
 spec:
   inputs:
     resources:
-      - name: runtime-git
+      - name: java-runtime-git
         type: git
     params:
       - name: OW_APP_JAVA_VERSION
@@ -16,7 +16,7 @@ spec:
         default: "core/java8/proxy/"
   outputs:
     resources:
-      - name: runtime-git
+      - name: java-runtime-git
         type: git
   steps:
     - name: build-runtime-with-gradle
@@ -24,5 +24,5 @@ spec:
       script: |
         #!/usr/bin/env bash
         set -xe
-        cp -r $(inputs.resources.runtime-git.path)/* $(outputs.resources.runtime-git.path)
-        cd $(outputs.resources.runtime-git.path)/$(inputs.params.OW_BUILD_CONFIG_PATH) && ./gradlew copyDependencies
+        cp -r $(inputs.resources.java-runtime-git.path)/* $(outputs.resources.java-runtime-git.path)
+        cd $(outputs.resources.java-runtime-git.path)/$(inputs.params.OW_BUILD_CONFIG_PATH) && ./gradlew copyDependencies

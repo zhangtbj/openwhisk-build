@@ -7,7 +7,7 @@ spec:
     resources:
       - name: app-git
         type: git
-      - name: runtime-git
+      - name: java-runtime-git
         type: git
     params:
       - name: DOCKERFILE
@@ -15,7 +15,7 @@ spec:
         default: "Dockerfile"
       - name: OW_RUNTIME_CONTEXT
         description: "The path to the dockerfile to build from Runtime Repo"
-        default: "dir:///workspace/runtime-git/"
+        default: "dir:///workspace/java-runtime-git/"
       - name: OW_AUTO_INIT
         description: "Base64 encoded Jar file contents"
         default: ""

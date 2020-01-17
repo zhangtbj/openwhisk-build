@@ -96,6 +96,9 @@ kubectl $OPERATION -f tasks/java/04-finalize-runtime-with-function.yaml
 # Create Pipeline
 kubectl $OPERATION -f pipeline/pipeline-to-build-openwhisk-app.yaml
 
+# Create runtime git resources
+kubectl $OPERATION -f tasks/runtime/
+
 # Run OpenWhisk Pipeline for NodeJS App after replacing DOCKER_USERNAME with user specified name
 # sed -e 's/${DOCKER_USERNAME}/'"$DOCKER_USERNAME"'/' pipelinerun/javascript/pipelinerun-build-padding-app.yaml.tmpl > pipelinerun/javascript/pipelinerun-build-padding-app.yaml
 # kubectl $OPERATION -f pipelinerun/javascript/pipelinerun-build-padding-app.yaml
